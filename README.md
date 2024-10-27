@@ -63,10 +63,10 @@ Check out a live demo of CineMate [here](https://your-demo-url.com) (replace wit
 ---
 
 ## 🖼 Screenshots
-![CineMate Home](https://your-screenshot-url.com)  
+![CineMate Home](https://github.com/Tanmay-Tiwaricyber/CineMate/blob/main/home.png)  
 *Home screen of CineMate, showcasing movie search and recommendations.*
 
-![Movie Details](https://your-screenshot-url.com)  
+![Movie Details](https://github.com/Tanmay-Tiwaricyber/CineMate/blob/main/search.png)  
 *Movie details view with genre-based recommendations.*
 
 ---
