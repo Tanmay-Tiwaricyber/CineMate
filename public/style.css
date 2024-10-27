@@ -1,0 +1,203 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #0e0e0e;
+    color: #ffffff;
+  }
+  
+  /* Container styling */
+  .container {
+    background: #1a1a1a;
+    width: 90%;
+    max-width: 650px;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    transition: transform 0.3s ease;
+    transform: scale(1);
+  }
+  
+  .container:hover {
+    transform: scale(1.02);
+  }
+  
+  h1 {
+    font-size: 2em;
+    font-weight: 600;
+    margin-bottom: 1.5em;
+    position: relative;
+    color: #ff6b6b;
+    text-shadow: 0px 0px 10px rgba(255, 107, 107, 0.7);
+  }
+  
+  h1::after {
+    content: "🍿";
+    position: absolute;
+    right: -25px;
+    top: -10px;
+    font-size: 1.5em;
+  }
+  
+  /* Input and Button styling */
+  #movieInput {
+    width: 80%;
+    padding: 14px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    text-align: center;
+    font-size: 1em;
+    background-color: #333;
+    color: #fff;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  #movieInput:focus {
+    box-shadow: 0 0 10px rgba(255, 107, 107, 0.8);
+  }
+  
+  #searchButton {
+    padding: 14px 25px;
+    margin-top: 15px;
+    background-color: #ff6b6b;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 500;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 4px 15px rgba(255, 107, 107, 0.4);
+  }
+  
+  #searchButton:hover {
+    background-color: #ff3b3b;
+    transform: translateY(-2px);
+  }
+  
+  #resultContainer {
+    margin-top: 30px;
+    text-align: left;
+  }
+  
+  /* Movie Card styling */
+  .movie-card {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #292929;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .movie-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+  }
+  
+  .movie-card img {
+    width: 60px;
+    height: 90px;
+    border-radius: 8px;
+    margin-right: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 3px 10px rgba(255, 107, 107, 0.5);
+  }
+  
+  .movie-card:hover img {
+    transform: scale(1.1);
+    box-shadow: 0 5px 20px rgba(255, 107, 107, 0.7);
+  }
+  
+  .movie-card .details {
+    color: #e4e9f1;
+  }
+  
+  .movie-card h2 {
+    font-size: 1.3em;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.2);
+  }
+  
+  .movie-card h2::before {
+    content: "🎬";
+    margin-right: 5px;
+    font-size: 1em;
+  }
+  
+  .movie-card p {
+    font-size: 0.9em;
+    color: #a9b4d0;
+  }
+  
+  /* Genre badge styling */
+  .genre {
+    display: inline-block;
+    background-color: #ff6b6b;
+    color: #fff;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 0.8em;
+    margin-right: 5px;
+    font-weight: 500;
+    transition: transform 0.2s ease;
+  }
+  
+  .genre:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Movie Banner styling */
+  .movie-banner {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0px 8px 15px rgba(255, 107, 107, 0.5);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .movie-banner:hover {
+    box-shadow: 0 10px 25px rgba(255, 107, 107, 0.7);
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 1.6em;
+    }
+  
+    #movieInput {
+      width: 100%;
+    }
+  
+    #searchButton {
+      width: 100%;
+      margin: 10px 0 0;
+    }
+  
+    .movie-card img {
+      width: 45px;
+      height: 70px;
+    }
+  
+    .movie-card h2 {
+      font-size: 1em;
+    }
+  }
+  
