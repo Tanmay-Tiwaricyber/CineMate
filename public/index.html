@@ -1,19 +1,147 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Movie Recommendation Bot</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CinePulse — Movie Recommendation Bot</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>Movie Recommendation Bot</h1>
-    <input type="text" id="movieInput" placeholder="Enter a movie name...">
-    <button id="searchButton">Search</button>
+  <div class="aurora-bg" aria-hidden="true"></div>
 
-    <div id="resultContainer"></div>
-  </div>
+  <header class="app-header">
+    <div class="brand">
+      <span class="logo">🎞️</span>
+      <span class="brand-text">CinePulse</span>
+    </div>
+
+    <div class="header-actions">
+      <button class="icon-btn" id="themeToggle" title="Toggle theme" aria-label="Toggle theme">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="app">
+    <section class="hero glass">
+      <div class="hero-text">
+        <h1 class="title">Movie Recommendation Bot</h1>
+        <p class="subtitle">Search any movie, filter by genre/year/rating, and discover your next watch.</p>
+      </div>
+
+      <form id="searchForm" class="searchbar" autocomplete="off" role="search" aria-label="Movie search">
+        <div class="input-wrap">
+          <span class="input-icon">🔎</span>
+          <input
+            id="movieInput"
+            name="movie"
+            type="text"
+            placeholder="Search movies (try “Inception”, “Parasite”, “Dune”...)"
+            aria-label="Enter a movie name"
+            autofocus
+          />
+          <button class="icon-btn" type="button" id="voiceBtn" title="Voice search" aria-label="Voice search">
+            🎤
+          </button>
+        </div>
+        <button id="searchButton" class="btn primary" type="submit">Search</button>
+      </form>
+
+      <div class="chips-row" id="chipRow">
+        <div class="chip-group">
+          <span class="chip-label">Trending:</span>
+          <button class="chip chip-outline" data-chip="Inception">Inception</button>
+          <button class="chip chip-outline" data-chip="Interstellar">Interstellar</button>
+          <button class="chip chip-outline" data-chip="Spider-Man">Spider‑Man</button>
+          <button class="chip chip-outline" data-chip="Parasite">Parasite</button>
+          <button class="chip chip-outline" data-chip="The Dark Knight">The Dark Knight</button>
+        </div>
+        <div class="chip-group" id="recentChips" hidden>
+          <span class="chip-label">Recent:</span>
+          <!-- recent chips injected here -->
+        </div>
+      </div>
+
+      <button id="filterToggle" class="btn subtle">
+        <span>Filters</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M6 12h12M10 18h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+
+      <section id="filters" class="filters" hidden>
+        <div class="filter-row">
+          <div class="filter-block">
+            <label class="filter-label">Genres</label>
+            <div class="chip-select" id="genreChips">
+              <!-- Static popular genres -->
+              <label class="chip-check"><input type="checkbox" value="Action" />Action</label>
+              <label class="chip-check"><input type="checkbox" value="Adventure" />Adventure</label>
+              <label class="chip-check"><input type="checkbox" value="Animation" />Animation</label>
+              <label class="chip-check"><input type="checkbox" value="Comedy" />Comedy</label>
+              <label class="chip-check"><input type="checkbox" value="Crime" />Crime</label>
+              <label class="chip-check"><input type="checkbox" value="Drama" />Drama</label>
+              <label class="chip-check"><input type="checkbox" value="Fantasy" />Fantasy</label>
+              <label class="chip-check"><input type="checkbox" value="Horror" />Horror</label>
+              <label class="chip-check"><input type="checkbox" value="Mystery" />Mystery</label>
+              <label class="chip-check"><input type="checkbox" value="Romance" />Romance</label>
+              <label class="chip-check"><input type="checkbox" value="Sci-Fi" />Sci‑Fi</label>
+              <label class="chip-check"><input type="checkbox" value="Thriller" />Thriller</label>
+            </div>
+          </div>
+
+          <div class="filter-block">
+            <label class="filter-label">Year</label>
+            <div class="range-inline">
+              <input id="yearMin" type="number" min="1900" max="2100" step="1" placeholder="From" />
+              <span class="range-sep">—</span>
+              <input id="yearMax" type="number" min="1900" max="2100" step="1" placeholder="To" />
+            </div>
+          </div>
+
+          <div class="filter-block">
+            <label class="filter-label">Min IMDb</label>
+            <input id="minRating" type="number" min="0" max="10" step="0.1" placeholder="e.g. 7.5" />
+          </div>
+
+          <div class="filter-actions">
+            <button id="applyFilters" class="btn primary ghost">Apply</button>
+            <button id="clearFilters" class="btn subtle">Clear</button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section id="resultsSection" class="results glass">
+      <div class="results-head">
+        <div class="result-meta">
+          <span id="resultCount" aria-live="polite">Search something to get results ✨</span>
+        </div>
+        <div class="result-actions">
+          <button id="loadMore" class="btn subtle" hidden>Load more</button>
+        </div>
+      </div>
+
+      <div id="resultContainer" class="grid"></div>
+
+      <div id="emptyState" class="empty" hidden>
+        <div class="empty-emoji">🍿</div>
+        <h3>Find your next favorite movie</h3>
+        <p>Try a title, a genre, or use the filters above.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <span>Built with ❤️ for movie lovers</span>
+    <span class="kbd-tip">Press / to focus search • Enter to search • Esc to clear</span>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
 
   <script src="script.js"></script>
 </body>
